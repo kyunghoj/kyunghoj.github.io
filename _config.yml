@@ -1,0 +1,77 @@
+# Site configuration
+# 1. Files excluded from Jekyll builds
+# 2. Installed Gems
+# 3. Gem settings
+# 4. Jekyll settings
+# 5. Collections
+# 6. Jekyll collections settings
+# 7. Site settings
+
+# 1. Files excluded from Jekyll builds
+exclude:
+- README.md
+- CODE_OF_CONDUCT.md
+- CONTRIBUTING.md
+- screenshot.png
+- LICENSE
+- CNAME
+- Gemfile
+- Gemfile.lock
+- garth-jekyll-theme.gemspec
+
+# 2. Installed Gems
+plugins:
+- jekyll-paginate
+- jekyll-remote-theme
+
+#Add gem "garth-jekyll-theme" to your Gemfile to add the theme as a dependancy
+#Run the command bundle install in the root of project to install the theme and its dependancies
+#Add theme: garth-jekyll-theme to your _config.yml file to set the site theme
+#Run bundle exec jekyll serve to build and serve your site
+#Done! Use the example _config.yml file to set site-wide options
+
+theme: garth-jekyll-theme
+#remote_theme: daviddarnes/garth
+
+# 3. Gem settings
+paginate: 2 # jekyll-paginate > items per page
+paginate_path: page:num # jekyll-paginate > blog page
+
+# 4. Jekyll settings
+sass:
+  style: compressed # Style compression
+permalink: pretty  # Permalink style (/YYYY/MM/DD/page-name/)
+excerpt_separator: <!-- more --> # Marks end of excerpt in posts
+timezone: Asia/Seoul # Timezone for blog posts and alike
+
+# 5. Collections
+collections:
+  posts:
+    title: Blog # Needed for Siteleaf
+    output: true
+    #description: "This is merely a demo, find out more [about Garth](about)" # The post list page content
+
+# 6. Jekyll collections settings
+defaults:
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: page # Default layout
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post # Default layout
+
+# 7. Site settings
+encoding: utf-8 # Make sure the encoding is right
+title: "KJ's Homepage" # Site name or title
+logo: "/assets/logo.svg" # Site logo
+# favicon: "/favicon.ico" # Uncomment to add custom favicon, or leave as is to use site logo
+#description: "A really basic theme for Jekyll, using the official Jekyll theme implementation" # Site description and default description
+url: "https://kyunghoj.github.io" # Site url
+baseurl: ""
+lang: en-US
