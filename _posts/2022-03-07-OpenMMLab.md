@@ -1,3 +1,7 @@
+---
+layout: post
+title: "MMDeploy"
+---
 
 OpenMMLab provides many frameworks to solve Computer Vision problems. 
 There are many project under OpenMMLab and some depend on others. 
