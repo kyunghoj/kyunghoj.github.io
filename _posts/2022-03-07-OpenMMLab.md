@@ -278,3 +278,10 @@ Traceback (most recent call last):
 ImportError: /opt/conda/envs/openmmlab/lib/python3.7/site-packages/mmcv/_ext.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _Z27points_in_boxes_cpu_forwardN2at6TensorES0_S0_
 ```
 
+Probably problem with `LD_LIBRARY_PATH`?
+
+```
+(openmmlab) kyungho.jeon@cuda-11-0-20220307-132532:~/MMDeploy$ echo $LD_LIBRARY_PATH
+/home/kyungho.jeon/onnxruntime-linux-x64-1.8.1/lib:/usr/local/cuda/lib64:/usr/local/nccl2/lib:/usr/local/cuda/extras/CUPTI/lib64
+```
+```
