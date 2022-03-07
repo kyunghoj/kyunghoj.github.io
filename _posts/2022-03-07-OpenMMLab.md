@@ -192,51 +192,89 @@ cmake .. \
       -DONNXRUNTIME_DIR=${ONNXRUNTIME_DIR} \
       -DMMDEPLOY_TARGET_BACKENDS=ort \
       -DMMDEPLOY_CODEBASES=mmdet
-cmake --build . -- -j$(nproc) && cmake --install .
+make -j$(nproc) && make install
 ```
 
-Now another error occurs:
+Seems to work.
+
+### Model Conversion
+
+> Once we have installed MMDetection, MMDeploy, ONNX Runtime and built plugin for ONNX Runtime, we can convert the Faster R-CNN to a .onnx model file which can be received by ONNX Runtime. Run following commands to use our deploy tools:
+
+First we need to download the pretrained wait (`*.pth` file).
 
 ```
-[  1%] Building CXX object csrc/backend_ops/onnxruntime/CMakeFiles/mmdeploy_onnxruntime_ops_obj.dir/grid_sample/grid_sample.cpp.o
-[  4%] Building CXX object csrc/backend_ops/onnxruntime/CMakeFiles/mmdeploy_onnxruntime_ops_obj.dir/common/ort_utils.cpp.o
-[  4%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/device_impl.cpp.o
-[  6%] Building CXX object csrc/backend_ops/onnxruntime/CMakeFiles/mmdeploy_onnxruntime_ops_obj.dir/modulated_deform_conv/modulated_deform_conv.cpp.o
-[  7%] Building CXX object csrc/backend_ops/onnxruntime/CMakeFiles/mmdeploy_onnxruntime_ops_obj.dir/onnxruntime_register.cpp.o
-[  9%] Building CXX object csrc/backend_ops/onnxruntime/CMakeFiles/mmdeploy_onnxruntime_ops_obj.dir/roi_align/roi_align.cpp.o
-[ 10%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/logger.cpp.o
-[ 12%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/graph.cpp.o
-[ 12%] Built target mmdeploy_onnxruntime_ops_obj
-[ 13%] Linking CXX shared library ../../../lib/libmmdeploy_onnxruntime_ops.so
-[ 13%] Built target mmdeploy_onnxruntime_ops
-[ 15%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/mat.cpp.o
-[ 16%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/model.cpp.o
-[ 18%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/module.cpp.o
-[ 19%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/net.cpp.o
-[ 21%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/operator.cpp.o
-[ 22%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/status_code.cpp.o
-[ 24%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/tensor.cpp.o
-[ 25%] Building CXX object csrc/core/CMakeFiles/mmdeploy_core.dir/registry.cpp.o
-In file included from /usr/include/spdlog/fmt/fmt.h:20:0,
-                 from /usr/include/spdlog/common.h:28,
-                 from /usr/include/spdlog/spdlog.h:12,
-                 from /home/kyungho.jeon/MMDeploy/csrc/core/logger.h:6,
-                 from /home/kyungho.jeon/MMDeploy/csrc/core/utils/formatter.h:6,
-                 from /home/kyungho.jeon/MMDeploy/csrc/core/tensor.cpp:8:
-/usr/include/spdlog/fmt/bundled/core.h: In instantiation of 'struct fmt::v5::formatter<mmdeploy::DataType, char, void>':
-/usr/include/spdlog/fmt/bundled/core.h:622:56:   required from 'static void fmt::v5::internal::value<Context>::format_custom_arg(const void*, Context&) [with T = mmdeploy::DataType; Context = fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char>]'
-/usr/include/spdlog/fmt/bundled/core.h:608:19:   required from 'fmt::v5::internal::value<Context>::value(const T&) [with T = mmdeploy::DataType; Context = fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char>]'
-/usr/include/spdlog/fmt/bundled/core.h:636:58:   required from 'constexpr fmt::v5::internal::init<Context, T, TYPE>::operator fmt::v5::internal::value<Context>() const [with Context = fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char>; T = const mmdeploy::DataType&; fmt::v5::internal::type TYPE = (fmt::v5::internal::type)13]'
-/usr/include/spdlog/fmt/bundled/core.h:1069:35:   required from 'typename std::enable_if<IS_PACKED, fmt::v5::internal::value<Context> >::type fmt::v5::internal::make_arg(const T&) [with bool IS_PACKED = true; Context = fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char>; T = mmdeploy::DataType; typename std::enable_if<IS_PACKED, fmt::v5::internal::value<Context> >::type = fmt::v5::internal::value<fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char> >]'
-/usr/include/spdlog/fmt/bundled/core.h:1180:51:   required from 'fmt::v5::format_arg_store<Context, Args>::format_arg_store(const Args& ...) [with Context = fmt::v5::basic_format_context<std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >, char>; Args = {mmdeploy::DataType, mmdeploy::DataType}]'
-/usr/include/spdlog/fmt/bundled/format.h:3257:38:   required from 'typename fmt::v5::buffer_context<Char>::type::iterator fmt::v5::format_to(fmt::v5::basic_memory_buffer<Char, SIZE>&, const S&, const Args& ...) [with S = const char*; Args = {mmdeploy::DataType, mmdeploy::DataType}; long unsigned int SIZE = 500; Char = char; typename fmt::v5::buffer_context<Char>::type::iterator = std::back_insert_iterator<fmt::v5::internal::basic_buffer<char> >]'
-/usr/include/spdlog/details/logger_impl.h:72:23:   required from 'void spdlog::logger::log(spdlog::source_loc, spdlog::level::level_enum, const char*, const Args& ...) [with Args = {mmdeploy::DataType, mmdeploy::DataType}]'
-/home/kyungho.jeon/MMDeploy/csrc/core/tensor.cpp:99:5:   required from here
-/usr/include/spdlog/fmt/bundled/core.h:492:3: error: static assertion failed: don't know how to format the type, include fmt/ostream.h if it provides an operator<< that should be used
-   static_assert(internal::no_formatter_error<T>::value,
-   ^~~~~~~~~~~~~
-make[2]: *** [csrc/core/CMakeFiles/mmdeploy_core.dir/build.make:202: csrc/core/CMakeFiles/mmdeploy_core.dir/tensor.cpp.o] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [CMakeFiles/Makefile2:461: csrc/core/CMakeFiles/mmdeploy_core.dir/all] Error 2
-make: *** [Makefile:136: all] Error 2
+cd ${MMDET_DIR}
+mkdir -p checkpoints
+pip install openmim
+mim download mmdet --config faster_rcnn_r50_fpn_1x_coco --dest ./checkpoints
 ```
+
+```
+# Assume you have installed MMDeploy in ${MMDEPLOY_DIR} and MMDetection in ${MMDET_DIR}
+# If you do not know where to find the path. Just type `pip show mmdeploy` and `pip show mmdet` in your console.
+
+python ${MMDEPLOY_DIR}/tools/deploy.py \
+    ${MMDEPLOY_DIR}/configs/mmdet/detection/detection_onnxruntime_dynamic.py \
+    ${MMDET_DIR}/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \
+    ${MMDET_DIR}/checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth \
+    ${MMDET_DIR}/demo/demo.jpg \
+    --work-dir work_dirs \
+    --device cpu \
+    --show \
+    --dump-info
+```
+
+Error!
+
+```
+Traceback (most recent call last):
+  File "/home/kyungho.jeon/MMDeploy/tools/deploy.py", line 277, in <module>
+    main()
+  File "/home/kyungho.jeon/MMDeploy/tools/deploy.py", line 86, in main
+    dump_info(deploy_cfg, model_cfg, args.work_dir, pth=checkpoint_path)
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/utils/export_info.py", line 347, in dump_info
+    deploy_info = get_deploy(deploy_cfg, model_cfg, work_dir=work_dir)
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/utils/export_info.py", line 269, in get_deploy
+    deploy_cfg, model_cfg, work_dir=work_dir)
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/utils/export_info.py", line 58, in get_model_name_customs
+    model_cfg=model_cfg, deploy_cfg=deploy_cfg, device='cpu')
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/apis/utils.py", line 21, in build_task_processor
+    import_codebase(codebase_type)
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/codebase/__init__.py", line 30, in import_codebase
+    importlib.import_module(f'mmdeploy.codebase.{lib}')
+  File "/opt/conda/envs/openmmlab/lib/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 728, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/codebase/mmdet/__init__.py", line 5, in <module>
+    from .models import *  # noqa: F401,F403
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/codebase/mmdet/models/__init__.py", line 3, in <module>
+    from .dense_heads import *  # noqa: F401,F403
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/codebase/mmdet/models/dense_heads/__init__.py", line 2, in <module>
+    from .base_dense_head import (base_dense_head__get_bbox,
+  File "/home/kyungho.jeon/MMDeploy/mmdeploy/codebase/mmdet/models/dense_heads/base_dense_head.py", line 3, in <module>
+    from mmdet.core.bbox.coder import (DeltaXYWHBBoxCoder, DistancePointBBoxCoder,
+  File "/home/kyungho.jeon/MMDetection/mmdet/core/__init__.py", line 3, in <module>
+    from .bbox import *  # noqa: F401, F403
+  File "/home/kyungho.jeon/MMDetection/mmdet/core/bbox/__init__.py", line 8, in <module>
+    from .samplers import (BaseSampler, CombinedSampler,
+  File "/home/kyungho.jeon/MMDetection/mmdet/core/bbox/samplers/__init__.py", line 12, in <module>
+    from .score_hlr_sampler import ScoreHLRSampler
+  File "/home/kyungho.jeon/MMDetection/mmdet/core/bbox/samplers/score_hlr_sampler.py", line 3, in <module>
+    from mmcv.ops import nms_match
+  File "/opt/conda/envs/openmmlab/lib/python3.7/site-packages/mmcv/ops/__init__.py", line 2, in <module>
+    from .assign_score_withk import assign_score_withk
+  File "/opt/conda/envs/openmmlab/lib/python3.7/site-packages/mmcv/ops/assign_score_withk.py", line 6, in <module>
+    '_ext', ['assign_score_withk_forward', 'assign_score_withk_backward'])
+  File "/opt/conda/envs/openmmlab/lib/python3.7/site-packages/mmcv/utils/ext_loader.py", line 13, in load_ext
+    ext = importlib.import_module('mmcv.' + name)
+  File "/opt/conda/envs/openmmlab/lib/python3.7/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+ImportError: /opt/conda/envs/openmmlab/lib/python3.7/site-packages/mmcv/_ext.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _Z27points_in_boxes_cpu_forwardN2at6TensorES0_S0_
+```
+
