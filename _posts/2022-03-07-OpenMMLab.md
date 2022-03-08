@@ -152,19 +152,19 @@ cd ${MMDEPLOY_DIR} # To MMDeploy root directory
 mkdir -p build && cd build
 
 # build ONNXRuntime custom ops
-#cmake -DMMDEPLOY_TARGET_BACKENDS=ort -DONNXRUNTIME_DIR=${ONNXRUNTIME_DIR} ..
-#make -j$(nproc)
+cmake -DMMDEPLOY_TARGET_BACKENDS=ort -DONNXRUNTIME_DIR=${ONNXRUNTIME_DIR} ..
+make -j$(nproc)
 
 # build MMDeploy SDK
 cmake .. \
       -DMMDEPLOY_BUILD_SDK=ON \
-      -DCMAKE_CXX_COMPILER=g++-7 \
+      -DCMAKE_CXX_COMPILER=g++ \
       -Dpplcv_DIR=${MMDEPLOY_DIR}/ppl.cv/cuda-build/install/lib/cmake/ppl \
       -DONNXRUNTIME_DIR=${ONNXRUNTIME_DIR} \
-      -DMMDEPLOY_TARGET_DEVICES="cuda;cpu" \
+      -DMMDEPLOY_TARGET_DEVICES="cpu;cuda" \
       -DMMDEPLOY_TARGET_BACKENDS=ort \
       -DMMDEPLOY_CODEBASES=mmdet
-cmake --build . -- -j$(nproc) && cmake --install .
+make -j$(nproc) && make install
 ```
       
 Error:
@@ -218,6 +218,18 @@ python ${MMDEPLOY_DIR}/tools/deploy.py \
     ${MMDEPLOY_DIR}/configs/mmdet/detection/detection_onnxruntime_dynamic.py \
     ${MMDET_DIR}/configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \
     ${MMDET_DIR}/checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth \
+    ${MMDET_DIR}/demo/demo.jpg \
+    --work-dir work_dirs \
+    --device cpu \
+    --show \
+    --dump-info
+```
+
+```
+python ${MMDEPLOY_DIR}/tools/deploy.py \
+    ${MMDEPLOY_DIR}/configs/mmdet/detection/detection_onnxruntime_dynamic.py \
+    ./faster_rcnn_r50_fpn_1x_coco.py \
+    ./faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth \
     ${MMDET_DIR}/demo/demo.jpg \
     --work-dir work_dirs \
     --device cpu \
@@ -283,5 +295,4 @@ Probably problem with `LD_LIBRARY_PATH`?
 ```
 (openmmlab) kyungho.jeon@cuda-11-0-20220307-132532:~/MMDeploy$ echo $LD_LIBRARY_PATH
 /home/kyungho.jeon/onnxruntime-linux-x64-1.8.1/lib:/usr/local/cuda/lib64:/usr/local/nccl2/lib:/usr/local/cuda/extras/CUPTI/lib64
-```
 ```
