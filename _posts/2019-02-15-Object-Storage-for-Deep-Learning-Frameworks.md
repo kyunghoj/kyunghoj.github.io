@@ -22,7 +22,7 @@ title: Object Storage for Deep Learning Frameworks
 예를 들어 Alexnet의 경우 GPU 8개를 사용하면 526 MB/s 이 필요하다고 하는데, 이는 매우 높은 수치이다. 
 따라서 Object Storage를 DL framework에서 사용하기 위해서는, 1) 고성능이 필요하며, 2) POSIX-compilant file system이 필요하다. 
 <center>
-<img src="/images/s3fs-fuse.png" width="640" alt="Figure 1. Using s3fs"/>
+<img src="/assets/images/s3fs-fuse.png" width="640" alt="Figure 1. Using s3fs"/>
 </center>
 
 이 논문에서는 Figure 1. 과 같은 구조를 제시한다. [`s3fs`]() 라는 [FUSE]() 기반의 소프트웨어를 사용하여 Object Storage 에 저장된 데이터를 Deep Learning Framework 들은 마치 (로컬) 파일시스템을 활용하는 것 처럼 느끼게 할 수 있다. 그렇다면 고성능은 어떻게 제공할까?

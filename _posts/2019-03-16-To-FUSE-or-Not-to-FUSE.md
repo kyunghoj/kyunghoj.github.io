@@ -22,13 +22,13 @@ tags: [fuse, storage, filesystem]
 일단 FUSE가 무엇인지, 어떤 구조를 가지고 있는지 다음 그림을 살펴보자. 
 
 <center>
-<img src="/images/fast17-vangoor/figure_1.jpg" width="640" alt="Figure 1. FUSE high-level architecture"/>
+<img src="/assets/images/fast17-vangoor/figure_1.jpg" width="640" alt="Figure 1. FUSE high-level architecture"/>
 </center>
 
 Application 들은 파일시스템과 직접 얘기하는 것이 아니라 [VFS](https://en.wikipedia.org/wiki/Virtual_file_system)라는 인터페이스를 통한다. 따라서 파일시스템 구현들은 [VFS](https://en.wikipedia.org/wiki/Virtual_file_system)가 정의하는 인터페이스를 구현한다. 따라서 위 그림과 같이, FUSE는 FUSE Driver가 커널모듈 형태로 존재하고, FUSE driver는 file system request 들을 user space에 있는 FUSE file-system daemon이라고 지칭되는 구현체에게 전달하는 역할을 한다. FUSE가 지원하는 request의 종류는 다음 테이블과 같다.
 
 <center>
-<img src="/images/fast17-vangoor/table_1.jpg" width="640" alt="Table 1. FUSE request types by group"/>
+<img src="/assets/images/fast17-vangoor/table_1.jpg" width="640" alt="Table 1. FUSE request types by group"/>
 </center>
 
 이 논문에서는 굵은 글씨로 표시된 것들만 자세히 설명하고 있다. 그 외에 것은 기존 VFS와 다르지 않은 의미를 가지고 있다. 특히 Permission 부분이 인상적이었는데, 
@@ -38,7 +38,7 @@ Application 들은 파일시스템과 직접 얘기하는 것이 아니라 [VFS]
 `ACCESS` request 를 처리하면 custom permission 로직을 구현할 수 있다. 예를 들어 분산시스템 환경에서 표준적인 방식 (예를 들면 LDAP 등) 별도의 권한 및 접근 관리를 제공하는 서비스가 있다면, 이 부분을 이용할 수 있을 것이다. 물론 보통은 `default_permissions` 옵션을 이용해서 마운트 하게 되는데, 이때는 통상적인 Unix 의 permission 시스템(ownership 과 permission bits 기반)을 따르게 된다. 
 
 <center>
-<img src="/images/fast17-vangoor/figure_2.jpg" width="640" alt="Figure 2. FUSE queues organizations"/>
+<img src="/assets/images/fast17-vangoor/figure_2.jpg" width="640" alt="Figure 2. FUSE queues organizations"/>
 </center>
 
 위 그림은 FUSE kernel driver 내부에서 request가 관리되는 queue 구조이다. 총 5개의 queue가 있다. (자세한 설명은 생략, 논문 참조 혹은 나중에 더 정리.)
