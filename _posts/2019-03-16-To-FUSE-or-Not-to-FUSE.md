@@ -1,5 +1,5 @@
 ---
-layout: post
+#layout: post
 title: "Post: To FUSE or Not to FUSE: Performance of User-Space File Systems"
 categories:
   - Blog
