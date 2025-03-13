@@ -1,8 +1,8 @@
 ---
-#layout: post
 title: "Post: To FUSE or Not to FUSE: Performance of User-Space File Systems"
 categories:
   - Blog
+  - Paper
 #categories: [papers]
 tags: [fuse, storage, filesystem]
 ---

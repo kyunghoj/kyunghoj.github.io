@@ -1,6 +1,8 @@
 ---
-layout: post
 title: What I read today, 2018-07-08
+categories:
+  - Blog
+tags: [what-i-read]
 ---
 
 ### [Borg, Omega, and Kubernetes](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/44843.pdf)

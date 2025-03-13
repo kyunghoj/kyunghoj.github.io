@@ -1,7 +1,6 @@
 ---
-layout: post
 title: "CephFS and more in Bonn"
-categories: [tech-talks]
+categories: [Blogs]
 tags: [storage, filesystem, ceph, cephfs]
 ---
 

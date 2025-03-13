@@ -1,6 +1,8 @@
 ---
-layout: post
 title: What I read, 2022-03-04
+categoris:
+  - Blog
+tags: [what-i-read]
 ---
 
 Actually these are from my old personal slack channel:

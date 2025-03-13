@@ -1,9 +1,11 @@
 ---
-layout: post
 title: MariaDB installation and configuration, 2018-05-10
+categories:
+  - Blog
+tags: [mysql, tip]
 ---
 
-## MariaDB 설치 및 셋업
+## MariaDB 설치 및 셋업에서 기억해야 할 것
 
 `mysql_secure_installation` 이라는 스크립트(?)가 있어서 테스트 목적으로 허용된 액세스 등을 production 들어가기 전에 제거할 수 있다.
 
