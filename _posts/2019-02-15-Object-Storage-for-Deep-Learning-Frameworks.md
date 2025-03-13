@@ -17,7 +17,7 @@ title: Object Storage for Deep Learning Frameworks
 
 하지만 object storage는 이전에 비교한 고성능 파일시스템보다는 성능이 떨어지는 것으로 알려져 있다. 게다가 POSIX 파일시스템 인터페이스도 제공되지 않는다. 성능이 떨어지는 것이 왜 문제인가? 왜냐하면 GPU가 매우 비싸기 때문에, 최대한 사용율을 높이는 것이 효율적이기 때문이다. 논문의 Table 1. 은 다양한 DL workload에 대해 GPU 개수가 1개에서 8개까지로 늘어났을 때, 얼마나 높은 데이터 대역폭(MB/s)이 요구되는지 기록해 두었다. 
 
-![Table 1. Storage bandwidth in MBytes/sec of popular deep learning workloads running with varied number of GPUs](/images/dl-storage-bandwidth.png)
+![Table 1. Storage bandwidth in MBytes/sec of popular deep learning workloads running with varied number of GPUs](/assets/images/dl-storage-bandwidth.png)
 
 예를 들어 Alexnet의 경우 GPU 8개를 사용하면 526 MB/s 이 필요하다고 하는데, 이는 매우 높은 수치이다. 
 따라서 Object Storage를 DL framework에서 사용하기 위해서는, 1) 고성능이 필요하며, 2) POSIX-compilant file system이 필요하다. 
