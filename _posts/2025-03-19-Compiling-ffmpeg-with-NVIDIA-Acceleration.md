@@ -102,8 +102,8 @@ ffmpeg: error while loading shared libraries: libavdevice.so.53: cannot open sha
 
 ## References
 
-1. https://pyav.org/docs/9.0.2/overview/caveats.html?highlight=hwaccel
-2. https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvidia-gpu/index.html
+1. [https://pyav.org/docs/9.0.2/overview/caveats.html?highlight=hwaccel](https://pyav.org/docs/9.0.2/overview/caveats.html?highlight=hwaccel)
+2. [Using FFmpeg with NVIDIA GPU Hardware Acceleration](https://docs.nvidia.com/video-technologies/video-codec-sdk/11.1/ffmpeg-with-nvidia-gpu/index.html)
 
 
 
