@@ -1,0 +1,228 @@
+---
+# This front matter lets Jekyll compile the stylesheet.
+---
+
+@charset "utf-8";
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}";
+@import "minimal-mistakes";
+
+// A quiet, type-led reading surface on top of Minimal Mistakes.
+$body-font: "IBM Plex Sans KR", "IBM Plex Sans", sans-serif;
+$latin-font: "IBM Plex Sans", "IBM Plex Sans KR", sans-serif;
+$mono-font: "IBM Plex Mono", monospace;
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: $body-font;
+  letter-spacing: -0.008em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title,
+.page__title,
+.archive__item-title,
+.masthead__menu-item,
+.page__meta,
+.page__taxonomy,
+.author__name,
+.pagination {
+  font-family: $latin-font;
+}
+
+.masthead {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.masthead__inner-wrap {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+.greedy-nav {
+  background: transparent;
+}
+
+.greedy-nav a,
+.site-title {
+  font-weight: 500;
+}
+
+.page__inner-wrap {
+  max-width: 750px;
+}
+
+.page__title {
+  margin-bottom: 0.45em;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.page__meta {
+  margin-top: 0;
+  color: #a8adb3;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+}
+
+.page__content {
+  font-size: 1.0625rem;
+  line-height: 1.78;
+  overflow-wrap: break-word;
+  word-break: keep-all;
+}
+
+.page__content p,
+.page__content ul,
+.page__content ol,
+.page__content dl {
+  margin-bottom: 1.45em;
+}
+
+.page__content li + li {
+  margin-top: 0.35em;
+}
+
+.page__content h2,
+.page__content h3,
+.page__content h4 {
+  clear: both;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.page__content h2 {
+  margin-top: 2.5em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.65em;
+}
+
+.page__content h3 {
+  margin-top: 2.1em;
+  font-size: 1.3em;
+}
+
+.page__content h4 {
+  margin-top: 1.8em;
+  font-size: 1.08em;
+}
+
+.page__content a {
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.page__content blockquote {
+  margin: 2em 0;
+  padding: 0.15em 0 0.15em 1.35em;
+  border-left: 3px solid #78a9ff;
+  color: #c6cbd1;
+  font-style: normal;
+}
+
+.page__content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: $mono-font;
+}
+
+:not(pre) > code {
+  margin: 0 0.08em;
+  padding: 0.16em 0.38em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.07);
+  color: #f0c674;
+  font-size: 0.86em;
+  white-space: break-spaces;
+}
+
+div.highlighter-rouge,
+figure.highlight {
+  margin: 1.8em 0;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.5rem;
+  background: #17191d;
+  box-shadow: none;
+}
+
+div.highlighter-rouge::before {
+  display: none;
+}
+
+.highlight {
+  margin: 0;
+  background: transparent;
+}
+
+.highlight pre {
+  padding: 1.1rem 1.2rem;
+  font-size: 0.87rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+.page__content img {
+  border-radius: 0.35rem;
+}
+
+.notice,
+.notice--primary,
+.notice--info,
+.notice--warning,
+.notice--danger,
+.notice--success {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.4rem;
+  box-shadow: none;
+}
+
+.author__avatar img {
+  border: 0;
+  box-shadow: none;
+}
+
+.page__footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+}
+
+@media (min-width: 64em) {
+  .layout--single .page {
+    padding-inline-end: 0;
+  }
+}
+
+@media (max-width: 37.5em) {
+  .page__title {
+    font-size: 2rem;
+  }
+
+  .page__content {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .highlight pre {
+    padding: 1rem;
+    font-size: 0.82rem;
+  }
+}
