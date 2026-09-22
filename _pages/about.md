@@ -2,18 +2,22 @@
 permalink: /about/
 title: "About"
 ---
-I am a software engineer at [GraphAI](https://graphai.io), a software start-up in Seoul, Korea.
+I am a software engineer at [GraphAI](https://graphai.io), a database and AI software start-up in
+Seoul, Korea.
 
 I earned a PhD in Computer Science and Engineering from the [University at Buffalo (aka UB, SUNY at
 Buffalo, and etc.)](https://www.cse.buffalo.edu), researching distributed and mobile systems under
-supervision of Prof. Steven Y. Ko. During my PhD study, I had also worked with Prof. Oliver Kennedy
+supervision of [Prof. Steven Y. Ko](https://steveyko.github.io/).
+During my PhD study, I had also worked with Prof. Oliver Kennedy
 and Prof. Karthik Dantu.  
 
 Even earlier in my life, I was a master student at Seoul National University and I worked for
-various employers, including Nexon Corp. in Korea. 
+various employers, including Nexon Corp. in Seoul, Korea. 
 
 ### Work Experience
 
+* Team Lead/Principal Engineer, DB Engine Team, GraphAI, September 2026 -- Current
+* Lead Software Engineer, DB Engine Team, GraphAI, November 2024 -- September 2026
 * Team Lead/Software Engineer, System Solutions Team, Neubla Korea, November 2021 -- October 2024.
 * Principal Engineer, Big Data Center, Samsung Electronics, March 2021 -- November 2021.
 * Staff Engineer, Samsung Electronics, September 2017 -- February 2021.
