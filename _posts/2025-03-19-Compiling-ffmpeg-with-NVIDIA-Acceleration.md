@@ -1,12 +1,13 @@
 ---
 title: Compiling ffmpeg with NVIDIA GPU Acceleration
-categoris:
+categories:
   - Blog
 tags: [ffmpeg, nvidia, hwaccel, gpu]
 ---
 
 
-> [!WARNING] 재생을 하지 않는 비디오 디코딩의 경우, 대부분의 최신 CPU 는 NVIDIA GPU를 사용했을 때와 크게 다르지 않은 성능을 보여준다고 한다. 특히나 av1 같은 비디오 디코더가 내장된 데스크탑 CPU라면 더더욱 그럴 것이다. `ffmpeg` 을 직접 빌드하는 것은 많은 문제를 발생시킬 가능성이 높으므로, 웬만하면 하지 않는 것을 추천한다.
+**Warning:** 재생을 하지 않는 비디오 디코딩의 경우, 대부분의 최신 CPU 는 NVIDIA GPU를 사용했을 때와 크게 다르지 않은 성능을 보여준다고 한다. 특히나 av1 같은 비디오 디코더가 내장된 데스크탑 CPU라면 더더욱 그럴 것이다. `ffmpeg` 을 직접 빌드하는 것은 많은 문제를 발생시킬 가능성이 높으므로, 웬만하면 하지 않는 것을 추천한다.
+{: .notice--warning}
 
 `ffmpeg` 이 NVIDIA GPU 를 이용한 가속을 하게 컴파일하려면 `nvcc` 를 필요로 하는데, `nvcc`는 [CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) 에 포함되어 있다.
 
